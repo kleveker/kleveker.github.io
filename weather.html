@@ -8,6 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .radar-widget {
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .radar-widget iframe {
+      display: block;
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+  </style>
 </head>
 <body class="page-weather">
 
@@ -39,6 +54,18 @@
     <p>St. Louis weather from your favorite sources.</p>
   </div>
 
+  <!-- LIVE RADAR -->
+  <div class="section-group">
+    <p class="section-label">Live St. Louis Radar</p>
+    <div class="radar-widget">
+      <iframe
+        src="https://radar.weather.gov/station/klsx/standard"
+        title="NWS St. Louis Radar">
+      </iframe>
+    </div>
+  </div>
+
+  <!-- FORECAST SITES -->
   <div class="section-group">
     <p class="section-label">Forecast</p>
     <div class="grid">
@@ -60,6 +87,7 @@
     </div>
   </div>
 
+  <!-- LOCAL TV WEATHER -->
   <div class="section-group">
     <p class="section-label">Local TV Weather</p>
     <div class="grid">

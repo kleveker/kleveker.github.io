@@ -8,6 +8,51 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .feed-widget {
+      background: var(--bg-section);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-bottom: 2rem;
+    }
+    .feed-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+    }
+    .feed-item:last-child { border-bottom: none; }
+    .feed-item:hover { background: var(--bg-card-hover); }
+    .feed-title {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .feed-item:hover .feed-title { color: var(--accent); }
+    .feed-meta {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+    .feed-loading {
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 14px;
+    }
+    .feed-error {
+      padding: 1.5rem;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 13px;
+    }
+  </style>
 </head>
 <body class="page-news">
 
@@ -39,6 +84,15 @@
     <p>Trusted news sources, local and national.</p>
   </div>
 
+  <!-- LIVE STL NEWS FEED -->
+  <div class="section-group">
+    <p class="section-label">Latest from STLToday</p>
+    <div class="feed-widget" id="rss-feed">
+      <div class="feed-loading">Loading latest headlines…</div>
+    </div>
+  </div>
+
+  <!-- ST. LOUIS LOCAL -->
   <div class="section-group">
     <p class="section-label">St. Louis Local</p>
     <div class="grid">
@@ -65,6 +119,7 @@
     </div>
   </div>
 
+  <!-- NATIONAL -->
   <div class="section-group">
     <p class="section-label">National</p>
     <div class="grid">
@@ -121,6 +176,39 @@
 function toggleMenu() {
   document.getElementById('mobileMenu').classList.toggle('open');
 }
+
+// Load STLToday RSS feed via RSS2JSON service
+async function loadFeed() {
+  const feedEl = document.getElementById('rss-feed');
+  const rssUrl = encodeURIComponent('https://www.stltoday.com/search/?f=rss&t=article&l=50&s=start_time&sd=desc');
+  const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}&count=10`;
+
+  try {
+    const res = await fetch(apiUrl);
+    const data = await res.json();
+
+    if (data.status !== 'ok' || !data.items.length) throw new Error('No items');
+
+    feedEl.innerHTML = data.items.map(item => {
+      const date = new Date(item.pubDate).toLocaleDateString('en-US', {
+        month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit'
+      });
+      return `
+        <a class="feed-item" href="${item.link}" target="_blank" rel="noopener">
+          <span class="feed-title">${item.title}</span>
+          <span class="feed-meta">${date}</span>
+        </a>`;
+    }).join('');
+  } catch (e) {
+    feedEl.innerHTML = `
+      <div class="feed-error">
+        Could not load feed. 
+        <a href="https://www.stltoday.com" target="_blank" rel="noopener" style="color:var(--accent)">Visit STLToday directly →</a>
+      </div>`;
+  }
+}
+
+loadFeed();
 </script>
 </body>
 </html>
