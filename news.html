@@ -86,7 +86,7 @@
 
   <!-- LIVE STL NEWS FEED -->
   <div class="section-group">
-    <p class="section-label">Latest from KMOV 4</p>
+    <p class="section-label">Latest from FOX 2 Now</p>
     <div class="feed-widget" id="rss-feed">
       <div class="feed-loading">Loading latest headlines…</div>
     </div>
@@ -180,7 +180,7 @@ function toggleMenu() {
 // Load STLToday RSS feed via RSS2JSON service
 async function loadFeed() {
   const feedEl = document.getElementById('rss-feed');
-  const rssUrl = encodeURIComponent('https://www.kmov.com/news/rss.xml');
+  const rssUrl = encodeURIComponent('https://fox2now.com/feed');
   const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${rssUrl}&count=10`;
 
   try {
@@ -203,7 +203,7 @@ async function loadFeed() {
     feedEl.innerHTML = `
       <div class="feed-error">
         Could not load feed. 
-        <a href="https://www.kmov.com" target="_blank" rel="noopener" style="color:var(--accent)">Visit KMOV directly →</a>
+        <a href="https://fox2now.com" target="_blank" rel="noopener" style="color:var(--accent)">Visit FOX 2 directly →</a>
       </div>`;
   }
 }
