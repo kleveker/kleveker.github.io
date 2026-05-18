@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-home">
 
 <nav>
   <a class="nav-brand" href="index.html">
@@ -22,12 +22,29 @@
     <a href="weather.html">Weather</a>
     <a href="sports.html">Sports</a>
   </div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html" class="active">Home</a>
+  <a href="news.html">News</a>
+  <a href="weather.html">Weather</a>
+  <a href="sports.html">Sports</a>
+</div>
 
 <div class="page">
   <div class="page-header">
-    <h1>Welcome to Eveker and Eveker</h1>
+    <h1>Eveker and Eveker</h1>
     <p>Your go-to hub for St. Louis news, weather, and sports.</p>
+  </div>
+
+  <div class="clock-widget">
+    <div class="clock-time" id="clock">--:-- --</div>
+    <div>
+      <div class="clock-date" id="clock-date">--</div>
+      <div class="clock-location">📍 St. Louis, Missouri</div>
+    </div>
   </div>
 
   <div class="home-grid">
@@ -37,14 +54,12 @@
       <div class="home-card-desc">Local St. Louis stations and national outlets all in one place.</div>
       <div class="home-card-arrow">Go to News →</div>
     </a>
-
     <a class="home-card" href="weather.html">
       <div class="home-card-icon">🌤️</div>
       <div class="home-card-title">Weather</div>
       <div class="home-card-desc">Check the St. Louis forecast from your favorite weather sources.</div>
       <div class="home-card-arrow">Go to Weather →</div>
     </a>
-
     <a class="home-card" href="sports.html">
       <div class="home-card-icon">🏆</div>
       <div class="home-card-title">Sports</div>
@@ -54,7 +69,34 @@
   </div>
 </div>
 
-<footer>© Ken Eveker</footer>
+<footer>
+  <span class="footer-copy">© Ken Eveker</span>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="weather.html">Weather</a>
+    <a href="sports.html">Sports</a>
+  </nav>
+</footer>
 
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+function updateClock() {
+  const now = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+  const d = new Date(now);
+  let h = d.getHours(), m = d.getMinutes(), s = d.getSeconds();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  document.getElementById('clock').textContent =
+    `${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')} ${ampm}`;
+  document.getElementById('clock-date').textContent =
+    d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric', timeZone:'America/Chicago' });
+}
+updateClock();
+setInterval(updateClock, 1000);
+</script>
 </body>
 </html>

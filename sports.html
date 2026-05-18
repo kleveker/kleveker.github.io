@@ -9,7 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="page-sports">
 
 <nav>
   <a class="nav-brand" href="index.html">
@@ -22,7 +22,16 @@
     <a href="weather.html">Weather</a>
     <a href="sports.html" class="active">Sports</a>
   </div>
+  <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+<div class="nav-mobile" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="news.html">News</a>
+  <a href="weather.html">Weather</a>
+  <a href="sports.html" class="active">Sports</a>
+</div>
 
 <div class="page">
   <div class="page-header">
@@ -30,134 +39,104 @@
     <p>St. Louis teams, scores, and league news.</p>
   </div>
 
-  <!-- ST. LOUIS TEAMS -->
   <div class="section-group">
     <p class="section-label">St. Louis Teams</p>
     <div class="grid">
       <a class="card" href="https://www.mlb.com/cardinals" target="_blank" rel="noopener">
         <div class="card-icon icon-red">⚾</div>
-        <div>
-          <p class="card-label">Cardinals</p>
-          <p class="card-domain">mlb.com</p>
-        </div>
+        <div><p class="card-label">Cardinals</p><p class="card-domain">mlb.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.nhl.com/blues" target="_blank" rel="noopener">
         <div class="card-icon icon-blue">🏒</div>
-        <div>
-          <p class="card-label">Blues</p>
-          <p class="card-domain">nhl.com</p>
-        </div>
+        <div><p class="card-label">Blues</p><p class="card-domain">nhl.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.battlehawks.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-yellow">🏈</div>
-        <div>
-          <p class="card-label">Battlehawks</p>
-          <p class="card-domain">battlehawks.com</p>
-        </div>
+        <div><p class="card-label">Battlehawks</p><p class="card-domain">battlehawks.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.stlcitysc.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-red">⚽</div>
-        <div>
-          <p class="card-label">City SC</p>
-          <p class="card-domain">stlcitysc.com</p>
-        </div>
+        <div><p class="card-label">City SC</p><p class="card-domain">stlcitysc.com</p></div>
         <span class="card-arrow">→</span>
       </a>
     </div>
   </div>
 
-  <!-- ESPN -->
   <div class="section-group">
     <p class="section-label">ESPN</p>
     <div class="grid">
       <a class="card" href="https://www.espn.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-red">📺</div>
-        <div>
-          <p class="card-label">ESPN</p>
-          <p class="card-domain">espn.com</p>
-        </div>
+        <div><p class="card-label">ESPN</p><p class="card-domain">espn.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.espn.com/mlb/" target="_blank" rel="noopener">
         <div class="card-icon icon-red">⚾</div>
-        <div>
-          <p class="card-label">ESPN MLB</p>
-          <p class="card-domain">espn.com/mlb</p>
-        </div>
+        <div><p class="card-label">ESPN MLB</p><p class="card-domain">espn.com/mlb</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.espn.com/nhl/" target="_blank" rel="noopener">
         <div class="card-icon icon-red">🏒</div>
-        <div>
-          <p class="card-label">ESPN NHL</p>
-          <p class="card-domain">espn.com/nhl</p>
-        </div>
+        <div><p class="card-label">ESPN NHL</p><p class="card-domain">espn.com/nhl</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.espn.com/xfl/" target="_blank" rel="noopener">
         <div class="card-icon icon-red">🏈</div>
-        <div>
-          <p class="card-label">ESPN XFL</p>
-          <p class="card-domain">espn.com/xfl</p>
-        </div>
+        <div><p class="card-label">ESPN XFL</p><p class="card-domain">espn.com/xfl</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.espn.com/soccer/league/_/name/usa.1" target="_blank" rel="noopener">
         <div class="card-icon icon-red">⚽</div>
-        <div>
-          <p class="card-label">ESPN MLS</p>
-          <p class="card-domain">espn.com</p>
-        </div>
+        <div><p class="card-label">ESPN MLS</p><p class="card-domain">espn.com</p></div>
         <span class="card-arrow">→</span>
       </a>
     </div>
   </div>
 
-  <!-- LEAGUES -->
   <div class="section-group">
     <p class="section-label">Leagues</p>
     <div class="grid">
       <a class="card" href="https://www.mlb.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-blue">⚾</div>
-        <div>
-          <p class="card-label">MLB</p>
-          <p class="card-domain">mlb.com</p>
-        </div>
+        <div><p class="card-label">MLB</p><p class="card-domain">mlb.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.nhl.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-blue">🏒</div>
-        <div>
-          <p class="card-label">NHL</p>
-          <p class="card-domain">nhl.com</p>
-        </div>
+        <div><p class="card-label">NHL</p><p class="card-domain">nhl.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.xfl.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-yellow">🏈</div>
-        <div>
-          <p class="card-label">XFL</p>
-          <p class="card-domain">xfl.com</p>
-        </div>
+        <div><p class="card-label">XFL</p><p class="card-domain">xfl.com</p></div>
         <span class="card-arrow">→</span>
       </a>
       <a class="card" href="https://www.mlssoccer.com/" target="_blank" rel="noopener">
         <div class="card-icon icon-green">⚽</div>
-        <div>
-          <p class="card-label">MLS</p>
-          <p class="card-domain">mlssoccer.com</p>
-        </div>
+        <div><p class="card-label">MLS</p><p class="card-domain">mlssoccer.com</p></div>
         <span class="card-arrow">→</span>
       </a>
     </div>
   </div>
-
 </div>
 
-<footer>© Ken Eveker</footer>
+<footer>
+  <span class="footer-copy">© Ken Eveker</span>
+  <nav class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="news.html">News</a>
+    <a href="weather.html">Weather</a>
+    <a href="sports.html">Sports</a>
+  </nav>
+</footer>
 
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
 </body>
 </html>
